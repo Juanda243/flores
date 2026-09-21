@@ -1,0 +1,1015 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --fondo: #fffaf0;
+    --texto: #3b3528;
+    --amarillo: #f6c945;
+    --amarillo-claro: #ffe98a;
+    --dorado: #e8a928;
+    --verde: #718355;
+    --verde-claro: #9caf88;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+    overflow: hidden;
+}
+
+
+/* =========================
+   ESCENAS
+========================= */
+
+.escena {
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.ramo-escena {
+    display: none;
+}
+
+.contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* =========================
+   TEXTOS INICIALES
+========================= */
+
+.pequeno {
+    font-size: 14px;
+    color: #9b8d70;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.3rem, 6vw, 4rem);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.subtitulo {
+    color: #81765f;
+    margin-bottom: 55px;
+}
+
+
+/* =========================
+   CAJITA
+========================= */
+
+.caja {
+    position: relative;
+
+    width: 190px;
+    height: 145px;
+
+    border: 0;
+    background: transparent;
+
+    cursor: pointer;
+
+    animation: flotar 3s ease-in-out infinite;
+}
+
+.cuerpo {
+    position: absolute;
+
+    bottom: 0;
+    left: 10px;
+
+    width: 170px;
+    height: 105px;
+
+    background: linear-gradient(
+        135deg,
+        #f6c945,
+        #eab62f
+    );
+
+    border-radius: 8px 8px 15px 15px;
+
+    box-shadow:
+        0 20px 35px rgba(166,126,20,.18);
+}
+
+.tapa {
+    position: absolute;
+
+    z-index: 3;
+
+    top: 27px;
+    left: 3px;
+
+    width: 184px;
+    height: 32px;
+
+    background: #f9d75b;
+
+    border-radius: 8px;
+
+    transition: .7s ease;
+
+    transform-origin: left bottom;
+}
+
+.cinta {
+    position: absolute;
+
+    z-index: 5;
+
+    background: #fff0ae;
+}
+
+.cinta.vertical {
+    width: 25px;
+    height: 118px;
+
+    left: 83px;
+    bottom: 0;
+}
+
+.cinta.horizontal {
+    width: 184px;
+    height: 15px;
+
+    left: 3px;
+    top: 36px;
+}
+
+.caja.abrir .tapa {
+    transform:
+        rotate(-18deg)
+        translate(-15px,-35px);
+}
+
+.caja.abrir {
+    animation: none;
+}
+
+
+/* =========================
+   RAMO
+========================= */
+
+.ramo-contenedor {
+    position: relative;
+
+    width: min(420px,90vw);
+    height: 570px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.ramo {
+    position: relative;
+
+    width: 360px;
+    height: 430px;
+
+    border: 0;
+    background: transparent;
+
+    cursor: pointer;
+
+    margin-top: 10px;
+
+    transition: transform .25s ease;
+}
+
+.ramo:hover {
+    transform: scale(1.015);
+}
+
+
+/* =========================
+   TALLOS
+========================= */
+
+.tallos {
+    position: absolute;
+    inset: 0;
+}
+
+.tallo {
+    position: absolute;
+
+    width: 8px;
+    height: 280px;
+
+    bottom: 65px;
+
+    background: linear-gradient(
+        90deg,
+        #61744b,
+        #91a774,
+        #61744b
+    );
+
+    border-radius: 100%;
+
+    transform-origin: bottom center;
+
+    box-shadow:
+        2px 0 3px rgba(0,0,0,.08);
+}
+
+.t1 {
+    left: 174px;
+    transform: rotate(-25deg);
+}
+
+.t2 {
+    left: 177px;
+    transform: rotate(-12deg);
+}
+
+.t3 {
+    left: 180px;
+    transform: rotate(0);
+}
+
+.t4 {
+    left: 182px;
+    transform: rotate(12deg);
+}
+
+.t5 {
+    left: 184px;
+    transform: rotate(24deg);
+}
+
+
+/* =========================
+   HOJAS
+========================= */
+
+.hoja {
+    position: absolute;
+
+    width: 55px;
+    height: 28px;
+
+    background: linear-gradient(
+        135deg,
+        #9caf88,
+        #63794f
+    );
+
+    border-radius: 100% 0 100% 0;
+
+    transform-origin: right center;
+
+    box-shadow:
+        inset -3px -3px 5px rgba(50,70,35,.12);
+}
+
+.hoja::after {
+    content: "";
+
+    position: absolute;
+
+    width: 45px;
+    height: 2px;
+
+    background: rgba(255,255,255,.3);
+
+    top: 14px;
+    left: 4px;
+
+    transform: rotate(-8deg);
+}
+
+.h1 {
+    left: 75px;
+    top: 250px;
+    transform: rotate(20deg);
+}
+
+.h2 {
+    left: 92px;
+    top: 305px;
+    transform: rotate(-15deg) scale(.9);
+}
+
+.h3 {
+    left: 215px;
+    top: 245px;
+    transform: scaleX(-1) rotate(15deg);
+}
+
+.h4 {
+    left: 225px;
+    top: 310px;
+    transform: scaleX(-1) rotate(-15deg) scale(.9);
+}
+
+.h5 {
+    left: 130px;
+    top: 275px;
+    transform: rotate(35deg) scale(.7);
+}
+
+.h6 {
+    left: 180px;
+    top: 280px;
+    transform: scaleX(-1) rotate(30deg) scale(.75);
+}
+
+
+/* =========================
+   FLORES
+========================= */
+
+/* =========================
+   25 FLORES DEL RAMO
+========================= */
+
+.flor {
+    position: absolute;
+    width: 105px;
+    height: 105px;
+    z-index: 4;
+    animation: aparecer .8s both;
+}
+
+/* FLORES PRINCIPALES */
+
+.flor1 {
+    top: 20px;
+    left: 125px;
+    transform: scale(1);
+}
+
+.flor2 {
+    top: 45px;
+    left: 35px;
+    transform: scale(.82);
+    animation-delay: .08s;
+}
+
+.flor3 {
+    top: 45px;
+    right: 30px;
+    transform: scale(.86);
+    animation-delay: .16s;
+}
+
+.flor4 {
+    top: 75px;
+    left: 90px;
+    transform: scale(.72);
+    animation-delay: .24s;
+}
+
+.flor5 {
+    top: 75px;
+    right: 75px;
+    transform: scale(.7);
+    animation-delay: .32s;
+}
+
+
+/* SEGUNDA CAPA */
+
+.flor6 {
+    top: 105px;
+    left: 5px;
+    transform: scale(.62);
+    animation-delay: .4s;
+}
+
+.flor7 {
+    top: 110px;
+    left: 55px;
+    transform: scale(.58);
+    animation-delay: .48s;
+}
+
+.flor8 {
+    top: 105px;
+    left: 145px;
+    transform: scale(.63);
+    animation-delay: .56s;
+}
+
+.flor9 {
+    top: 110px;
+    right: 35px;
+    transform: scale(.6);
+    animation-delay: .64s;
+}
+
+.flor10 {
+    top: 125px;
+    right: 0;
+    transform: scale(.5);
+    animation-delay: .72s;
+}
+
+
+/* TERCERA CAPA */
+
+.flor11 {
+    top: 150px;
+    left: 20px;
+    transform: scale(.5);
+    animation-delay: .8s;
+}
+
+.flor12 {
+    top: 155px;
+    left: 75px;
+    transform: scale(.52);
+    animation-delay: .88s;
+}
+
+.flor13 {
+    top: 150px;
+    left: 125px;
+    transform: scale(.48);
+    animation-delay: .96s;
+}
+
+.flor14 {
+    top: 155px;
+    right: 70px;
+    transform: scale(.5);
+    animation-delay: 1.04s;
+}
+
+.flor15 {
+    top: 150px;
+    right: 15px;
+    transform: scale(.48);
+    animation-delay: 1.12s;
+}
+
+
+/* CUARTA CAPA */
+
+.flor16 {
+    top: 190px;
+    left: 5px;
+    transform: scale(.43);
+    animation-delay: 1.2s;
+}
+
+.flor17 {
+    top: 195px;
+    left: 50px;
+    transform: scale(.45);
+    animation-delay: 1.28s;
+}
+
+.flor18 {
+    top: 195px;
+    left: 100px;
+    transform: scale(.4);
+    animation-delay: 1.36s;
+}
+
+.flor19 {
+    top: 190px;
+    right: 70px;
+    transform: scale(.43);
+    animation-delay: 1.44s;
+}
+
+.flor20 {
+    top: 195px;
+    right: 20px;
+    transform: scale(.42);
+    animation-delay: 1.52s;
+}
+
+
+/* FLORES PEQUEÑAS DE RELLENO */
+
+.flor21 {
+    top: 225px;
+    left: 30px;
+    transform: scale(.34);
+    animation-delay: 1.6s;
+}
+
+.flor22 {
+    top: 230px;
+    left: 80px;
+    transform: scale(.36);
+    animation-delay: 1.68s;
+}
+
+.flor23 {
+    top: 225px;
+    left: 135px;
+    transform: scale(.33);
+    animation-delay: 1.76s;
+}
+
+.flor24 {
+    top: 230px;
+    right: 65px;
+    transform: scale(.35);
+    animation-delay: 1.84s;
+}
+
+.flor25 {
+    top: 225px;
+    right: 15px;
+    transform: scale(.32);
+    animation-delay: 1.92s;
+}
+
+
+/* =========================
+   PÉTALOS
+========================= */
+
+.petalo {
+    position: absolute;
+
+    width: 42px;
+    height: 67px;
+
+    left: 32px;
+    top: 19px;
+
+    background: linear-gradient(
+        135deg,
+        #fff08b 0%,
+        #f8d34d 55%,
+        #eab52d 100%
+    );
+
+    border-radius:
+        55% 55% 48% 48% /
+        65% 65% 35% 35%;
+
+    transform-origin: 21px 34px;
+
+    box-shadow:
+        inset 2px 2px 5px rgba(255,255,255,.55),
+        inset -3px -4px 6px rgba(196,145,20,.12);
+}
+
+.p1 {
+    transform: rotate(0deg) translateY(-20px);
+}
+
+.p2 {
+    transform: rotate(60deg) translateY(-20px);
+}
+
+.p3 {
+    transform: rotate(120deg) translateY(-20px);
+}
+
+.p4 {
+    transform: rotate(180deg) translateY(-20px);
+}
+
+.p5 {
+    transform: rotate(240deg) translateY(-20px);
+}
+
+.p6 {
+    transform: rotate(300deg) translateY(-20px);
+}
+
+
+/* =========================
+   CENTROS
+========================= */
+
+.centro {
+    position: absolute;
+
+    z-index: 5;
+
+    width: 42px;
+    height: 42px;
+
+    left: 31px;
+    top: 31px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffd968 0 7%,
+            transparent 8%
+        ),
+        radial-gradient(
+            circle,
+            #c98519 0 38%,
+            #e5a928 40% 67%,
+            #bd7814 70%
+        );
+
+    box-shadow:
+        0 3px 7px rgba(150,100,10,.25),
+        inset 2px 2px 4px rgba(255,255,255,.3);
+}
+
+
+/* =========================
+   ENVOLTURA
+========================= */
+
+.envoltura {
+    position: absolute;
+
+    z-index: 10;
+
+    width: 235px;
+    height: 155px;
+
+    bottom: 12px;
+    left: 62px;
+}
+
+.papel {
+    position: absolute;
+
+    bottom: 0;
+
+    width: 150px;
+    height: 145px;
+
+    background: linear-gradient(
+        110deg,
+        #f6edda,
+        #fffaf0 48%,
+        #e8dcc3
+    );
+
+    box-shadow:
+        0 10px 15px rgba(90,70,30,.12);
+}
+
+.papel1 {
+    left: 0;
+
+    clip-path: polygon(
+        0 0,
+        100% 18%,
+        72% 100%,
+        10% 100%
+    );
+
+    transform: rotate(-8deg);
+}
+
+.papel2 {
+    left: 43px;
+
+    z-index: 2;
+
+    clip-path: polygon(
+        0 15%,
+        100% 0,
+        88% 100%,
+        15% 100%
+    );
+}
+
+.papel3 {
+    right: 0;
+
+    clip-path: polygon(
+        0 18%,
+        100% 0,
+        90% 100%,
+        30% 100%
+    );
+
+    transform: rotate(8deg);
+}
+
+
+/* =========================
+   LAZO
+========================= */
+
+.lazo {
+    position: absolute;
+
+    z-index: 15;
+
+    left: 96px;
+    bottom: 18px;
+
+    width: 55px;
+    height: 42px;
+}
+
+.lazo i {
+    position: absolute;
+
+    width: 29px;
+    height: 25px;
+
+    background: #f2c33d;
+
+    border-radius:
+        70% 25% 70% 25%;
+}
+
+.lazo i:first-child {
+    left: 0;
+    transform: rotate(25deg);
+}
+
+.lazo i:nth-child(2) {
+    right: 0;
+    transform:
+        scaleX(-1)
+        rotate(25deg);
+}
+
+.lazo b {
+    position: absolute;
+
+    left: 20px;
+    top: 9px;
+
+    width: 17px;
+    height: 17px;
+
+    background: #dca622;
+
+    border-radius: 50%;
+}
+
+
+/* =========================
+   MENSAJES
+========================= */
+
+.mensaje-ramo {
+    font-family: "Playfair Display", serif;
+
+    font-size: 25px;
+    font-weight: 500;
+
+    margin-top: -5px;
+
+    transition: opacity .5s ease;
+}
+
+.ayuda {
+    margin-top: 8px;
+
+    color: #93866c;
+
+    font-size: 14px;
+
+    transition: opacity .5s ease;
+}
+
+
+/* =========================
+   DESTELLOS
+========================= */
+
+.destello {
+    position: absolute;
+
+    z-index: 20;
+
+    color: #e8b72d;
+
+    font-size: 22px;
+
+    opacity: .6;
+
+    animation:
+        destellar
+        2.5s
+        ease-in-out
+        infinite;
+}
+
+.d1 {
+    top: 85px;
+    left: 35px;
+}
+
+.d2 {
+    top: 185px;
+    right: 20px;
+
+    animation-delay: .8s;
+}
+
+.d3 {
+    top: 35px;
+    right: 75px;
+
+    animation-delay: 1.3s;
+}
+
+
+/* =========================
+   FRASES
+========================= */
+
+.frases {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 30;
+
+    pointer-events: none;
+}
+
+.frase {
+    position: absolute;
+
+    left: 50%;
+    top: 40px;
+
+    transform: translateX(-50%);
+
+    width: max-content;
+    max-width: 90vw;
+
+    padding: 12px 20px;
+
+    background: rgba(255,255,255,.9);
+
+    border:
+        1px solid
+        rgba(232,169,40,.25);
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(110,80,20,.12);
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 18px;
+
+    animation:
+        frase
+        .9s
+        ease
+        forwards;
+}
+
+
+/* =========================
+   ANIMACIONES
+========================= */
+
+@keyframes flotar {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-9px);
+    }
+}
+
+@keyframes aparecer {
+
+    from {
+        opacity: 0;
+        transform: scale(.3) rotate(-15deg);
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes destellar {
+
+    0%, 100% {
+        opacity: .2;
+        transform: scale(.8) rotate(0);
+    }
+
+    50% {
+        opacity: .9;
+        transform: scale(1.15) rotate(15deg);
+    }
+}
+
+@keyframes frase {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate(-50%,15px)
+            scale(.9);
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translate(-50%,0)
+            scale(1);
+    }
+}
+
+@keyframes golpe {
+
+    0% {
+        transform: rotate(0);
+    }
+
+    25% {
+        transform:
+            rotate(-2deg)
+            scale(1.02);
+    }
+
+    50% {
+        transform:
+            rotate(2deg)
+            scale(1.03);
+    }
+
+    75% {
+        transform: rotate(-1deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+
+.golpe {
+    animation: golpe .45s ease;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+
+    .escena {
+        min-height: 100svh;
+    }
+
+    h1 {
+        font-size: 2.4rem;
+        padding: 0 20px;
+    }
+
+    .subtitulo {
+        padding: 0 25px;
+        margin-bottom: 45px;
+    }
+
+    .ramo-contenedor {
+        transform: scale(.82);
+    }
+
+    .mensaje-ramo {
+        font-size: 22px;
+    }
+
+    .frase {
+        font-size: 16px;
+        padding: 11px 17px;
+    }
+}
